@@ -1,0 +1,552 @@
+I,II,III
+1. Посочете коя от изброените програми e среда за разработка на софтуер.
+ - Visual Studio
+
+2. Посочете коя от изброените програми НЕ e среда за разработка на софтуер.
+ - Google Chrome
+
+3. Посочете какво означава абревиатурата IDE:
+ - Integrated Development Environment
+
+4. Посочете за какво служи клавишната комбинация Ctrl + Q във Visual Studio.
+ - Бързо стартиране /Quick Launch/
+
+5. Посочете за какво служи клавиша F12 във Visual Studio.
+ - Навигиране в кода /Go to Definition/ до тялото на даден метод
+
+
+IV,V
+1. Обяснете как работят снипетите във Visual Studio. 
+ - Снипетите позволяват да трансофмираме дума и/или изрази в по-голям фрагмент от код. 
+Това става като напишем израза на снипета и натиснем два пъти клавиш Tab. 
+
+2. Дайте пример за употреба на снипети във Visual Studio.
+ - Снипетите позволяват да трансофмираме дума и/или изрази в по-голям фрагмент от код. 
+Това става като напишем израза на снипета и натиснем два пъти клавиш Tab. Такъв снипет може да бъде например for, 
+който се преобразува до пълноценен фор цикъл.
+
+3. Изложете поне 2 разлики между интегрирана среда за разработка (IDE) и текстов редактор.
+ - Еталон на отговора:
+IDE позволяват компилирането и дебъгването на код, докато текстовите редактори нямат такава възможност.
+IDE могат да имат модул за дизайн на интерфейс, докато текстовите редактори нямат такава възможност.
+IDE могат да се свързват със системи за контрол на версиите, докато текстовите редактори нямат такава възможност.
+
+4. За всяка от клавишните комбинации задайте нейното действие във Visual Studio
+
+Ctrl-K + Ctrl-C [[1] - закоментиране на избраните редове]
+
+Ctrl-K + Ctrl-U [[2] - премахване на коментар от избраните редове]
+
+Ctrl-K + Ctrl-D [[3] - подреждане (форматиране) на кода]
+
+Ctrl + Shift + N [[4] - създаване на нов файл]
+
+
+VI
+1. Свържете всеки от посочените случаи с решение, в което средата се използва пълноценно.
+
+Кодът не е добре подреден - [[1] - използваме автоматично форматиране (подреждане)]
+
+Разполагаме с файл с около 3000 реда, трябва да намерим тялото на метод, чието име знаем - [[2] - Навигираме до метода с помощта на F12]
+
+Налага се често да пишем стандартни фрагменти код - [[3] - Използваме снипети, където е възможно]
+
+
+VII,VIII,IX
+1. За какво служи клавишната комбинация Ctrl + K, Ctrl + D?
+ - подреждане на кода
+
+2. За какво служи клавишната комбинация Ctrl + F5 във Visual Studio?
+ - стартиране на програмата в стандартен режим
+
+3. За какво служи клавиш F5 във Visual Studio?
+ - стартиране на програмата в дебъг режим
+
+4. За какво служи клавиш F10 във Visual Studio?
+ - стартиране на програмата в режим стъпка-по-стъпка
+
+5. Коя от следните опции НЕ Е налична във Visual Studio?
+ - анализ на мрежови пакети
+
+
+X,XI
+1. Обяснете предназначението на breakpoint (точки на счупване) в дебъгера на Visual Studio.
+ - При достигане на breakpoint изпълнението на програмата се поставя на пауза, като по този начин позволява на програмиста да наблюдава стойностите от дебъгера.
+
+2. Обяснете каква е разликата между Solution (Решение) и Project (Проект) във Visual Studio.
+ - Решенията (Solution) съдържат в себе си проектите. Проектите могат да бъдат отделни софтуерни приложения (конзолни или с графичен интерфейс), уеб приложения, 
+динамични библиотеки и други. В рамките на един Solution проектите могат да си взаимодействат един с друг и да ползват определени свои части.
+
+3. Обяснете употребата на SQL Server Object Explorer във Visual Studio.
+ - SQL Server Object Explorer e инструмент във Visual Studio, който позволява преглед на БД, както и извършването на промени по структурата на обектите от БД и изпълнението на заявки върху нея. 
+
+4. Обяснете как може да използвате снипети във Visual Studio.
+ - според избрания програмен език Visual Studio разполага с набор от снипети, които могат да бъдат активирани с написването на съответната ключова дума и двойно натискане на клавиш TAB.
+
+
+XII
+1. Демонстрирайте как бихте инсталирали разширението CodeMaid в средата за разработка Visual Studio. Подредете картинките така, че да спазват правилната последователност от стъпките. 
+
+Номерирайте картинките, като използвате цифрите за влачене под таблицата.
+
+ - малка черна картинка - 1
+ - голяма черна картинка - 2
+ - голяма бяла картинка - 3
+
+2. Демонстрирайте как бихте инсталирали разширението Markdown Editor в средата за разработка Visual Studio. Подредете картинките така, че да спазват правилната последователност от стъпките. 
+
+Номерирайте картинките, като използвате цифрите за влачене под таблицата.
+
+ - малка черна картинка - 1
+ - голяма черна картинка - 2
+ - голяма бяла картинка - 3
+
+
+XIII,XIV
+1. Посочете с коя директива се включват в кода допълнителни библиотеки.
+ - using
+
+2. Посочете коя от следните команди е коректна команда за инсталиране на пакета Banichka чрез Package Manager Console във Visual Studo.
+ - Install-Package Banichka
+
+3. Посочете как се нарича пакетния мениджър в .NET?
+ - NuGET
+
+
+
+XV
+1. Обяснете как се достъпва NuGET Package Manager.
+ - NuGET package manager може да бъде достъпен от Tools -> NuGET package manager -> Manage NuGET packages for solution, а също така и с десен бутон върху проект/решение в Solution explorer и избор на Manage NuGet Packages.
+
+2. Обяснете какво е NuGET Package Manager.
+ - NuGET е пакетен мениджър във Visual Studio. Той позволява управлението на пакети със софтуер.
+
+
+XVI,XVII
+1. Демонстрирайте използването на библиотеката System.Text.Json (в .NET 5+) за сериализиране към JSON.
+
+using {1:SHORTANSWER:%100%System.Text.Json};
+namespace SerializeBasic {
+		public class WeatherForecast {
+  		public DateTimeOffset Date { get; set; }
+    	public int TemperatureCelsius { get; set; }
+    	public string? Summary { get; set; }
+  	}
+  
+  	public class Program {
+  		public static void Main() {
+    		var weatherForecast = new WeatherForecast {
+      		Date = DateTime.Parse("2019-08-01"),
+        	TemperatureCelsius = 25,
+        	Summary = "Hot"
+      	};
+
+				string jsonString =  {2:SHORTANSWER:%100%JsonSerializer.Serialize(weatherForecast)}; 
+        Console.WriteLine(jsonString);
+      }
+    }
+}
+
+ - 
+
+2. Демонстрирайте използването на библиотеката System.Text.Json (в .NET 5+) за десериализиране от JSON към обект.
+
+using {1:SHORTANSWER:%100%System.Text.Json};
+
+namespace DeserializeExtra
+{
+    public class WeatherForecast
+    {
+        public DateTimeOffset Date { get; set; }
+        public int TemperatureCelsius { get; set; }
+        public string? Summary { get; set; }
+        public string? SummaryField;
+        public IList<DateTimeOffset>? DatesAvailable { get; set; }
+        public Dictionary<string, HighLowTemps>? TemperatureRanges { get; set; }
+        public string[]? SummaryWords { get; set; }
+    }
+
+    public class HighLowTemps
+    {
+        public int High { get; set; }
+        public int Low { get; set; }
+    }
+
+    public class Program
+    {
+        public static void Main()
+        {
+            string jsonString =
+@"{
+  ""Date"": ""2019-08-01T00:00:00-07:00"",
+  ""TemperatureCelsius"": 25,
+  ""Summary"": ""Hot"",
+  ""DatesAvailable"": [
+    ""2019-08-01T00:00:00-07:00"",
+    ""2019-08-02T00:00:00-07:00""
+  ],
+  ""TemperatureRanges"": {
+                ""Cold"": {
+                    ""High"": 20,
+      ""Low"": -10
+                },
+    ""Hot"": {
+                    ""High"": 60,
+      ""Low"": 20
+    }
+            },
+  ""SummaryWords"": [
+    ""Cool"",
+    ""Windy"",
+    ""Humid""
+  ]
+}
+";
+                
+            WeatherForecast? weatherForecast = {2:SHORTANSWER:%100%JsonSerializer.Deserialize<WeatherForecast>(jsonString)}; 
+
+            Console.WriteLine($"Date: {weatherForecast?.Date}");
+            Console.WriteLine($"TemperatureCelsius: {weatherForecast?.TemperatureCelsius}");
+            Console.WriteLine($"Summary: {weatherForecast?.Summary}");
+        }
+    }
+}
+
+namespace SerializeBasic {
+		public class WeatherForecast {
+  		public DateTimeOffset Date { get; set; }
+    	public int TemperatureCelsius { get; set; }
+    	public string? Summary { get; set; }
+  	}
+  
+  	public class Program {
+  		public static void Main() {
+    		var weatherForecast = new WeatherForecast {
+      		Date = DateTime.Parse("2019-08-01"),
+        	TemperatureCelsius = 25,
+        	Summary = "Hot"
+      	};
+
+        Console.WriteLine(jsonString);
+      }
+    }
+}
+
+ - 
+
+3. Демонстрирайте използването на библиотеката System.Text.Json (в .NET 5+) за десериализиране от JSON към обект.
+
+using {1:SHORTANSWER:%100%System.Text.Json};
+
+namespace DeserializeExtra
+{
+    public class WeatherForecast
+    {
+        public DateTimeOffset Date { get; set; }
+        public int TemperatureCelsius { get; set; }
+        public string? Summary { get; set; }
+        public string? SummaryField;
+        public IList<DateTimeOffset>? DatesAvailable { get; set; }
+        public Dictionary<string, HighLowTemps>? TemperatureRanges { get; set; }
+        public string[]? SummaryWords { get; set; }
+    }
+
+    public class HighLowTemps
+    {
+        public int High { get; set; }
+        public int Low { get; set; }
+    }
+
+    public class Program
+    {
+        public static void Main()
+        {
+            string jsonString =
+@"{
+  ""Date"": ""2019-08-01T00:00:00-07:00"",
+  ""TemperatureCelsius"": 25,
+  ""Summary"": ""Hot"",
+  ""DatesAvailable"": [
+    ""2019-08-01T00:00:00-07:00"",
+    ""2019-08-02T00:00:00-07:00""
+  ],
+  ""TemperatureRanges"": {
+                ""Cold"": {
+                    ""High"": 20,
+      ""Low"": -10
+                },
+    ""Hot"": {
+                    ""High"": 60,
+      ""Low"": 20
+    }
+            },
+  ""SummaryWords"": [
+    ""Cool"",
+    ""Windy"",
+    ""Humid""
+  ]
+}
+";
+                
+            WeatherForecast? weatherForecast = {2:SHORTANSWER:%100%JsonSerializer.Deserialize<WeatherForecast>(jsonString)}; 
+
+            Console.WriteLine($"Date: {weatherForecast?.Date}");
+            Console.WriteLine($"TemperatureCelsius: {weatherForecast?.TemperatureCelsius}");
+            Console.WriteLine($"Summary: {weatherForecast?.Summary}");
+        }
+    }
+}
+
+ - 
+
+
+
+XVIII
+1. Пример: По време на теоретичния изпит се предоставя непълен/неработещ/некоректен програмен
+
+фрагмент. Предоставеният фрагмент да се приведе в работещ вид.
+
+
+
+Условие:
+
+Да се напише програма, която трябва да обработва информация за филми в JSON вид.
+
+Създайте клас Movie със свойства за:
+
+● Id (int) – номер на филма
+
+● Name (string) – име на филма
+
+● Rating (decimal) – IMDB рейтинг на филма
+
+● Year (DateTime) – година на премиерата на филма
+
+ - Movie.cs:
+public class Movie
+
+    {
+
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public decimal Rating { get; set; }
+
+        public DateTime Year { get; set; }
+
+    }
+
+Допуснати грешки на всеки от редовете със свойства. За всеки поправен ред код се дават до 4 т.
+
+Program.cs:
+
+
+
+using System;
+
+using System.Collections.Generic;
+
+using System.Text.Json;
+
+
+
+namespace JSONMovie
+
+{
+
+    class Program
+
+    {
+
+        static void Main(string[] args)
+
+        {
+
+            List<Movie> movies = new List<Movie>();
+
+            movies.Add(new Movie()
+
+            {
+
+                Id = 1,
+
+                Name = "Movie 1",
+
+                Rating = 3,
+
+                Year = DateTime.Parse("1/1/1998")
+
+            });
+
+
+
+            movies.Add(new Movie()
+
+            {
+
+                Id = 2,
+
+                Name = "Movie 2",
+
+                Rating = 3,
+
+                Year = DateTime.Parse("1/1/2006")
+
+            });
+
+
+
+            string jsonString = JsonSerializer.Serialize(movies);
+
+
+
+            Console.WriteLine(jsonString);
+
+        }
+
+    }
+
+}
+
+2. Пример: По време на теоретичния изпит се предоставя непълен/неработещ/некоректен програмен
+
+фрагмент. Предоставеният фрагмент да се приведе в работещ вид.
+
+
+
+Условие:
+
+Да се напише програма, която трябва да обработва информация за игри в JSON вид.
+
+Създайте клас Game със свойства за:
+
+● Id (int) – номер на играта
+
+● Name (string) – име на играта
+
+● Rating (decimal) – Metascore рейтинг на играта
+
+● Year (DateTime) – дата на излизането на играта
+
+ - Movie.cs:
+public class Movie
+
+    {
+
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public decimal Rating { get; set; }
+
+        public DateTime Year { get; set; }
+
+    }
+
+Допуснати грешки на всеки от редовете със свойства. За всеки поправен ред код се дават до 4 т.
+
+Program.cs:
+
+
+
+using System;
+
+using System.Collections.Generic;
+
+using System.Text.Json;
+
+
+
+namespace JSONGame
+
+{
+
+    class Program
+
+    {
+
+        static void Main(string[] args)
+
+        {
+
+            List<Game> games = new List<Game>();
+
+            games.Add(new Game()
+
+            {
+
+                Id = 1,
+
+                Name = "Game 1",
+
+                Rating = 3,
+
+                Year = DateTime.Parse("1/1/1998")
+
+            });
+
+
+
+            games.Add(new Game()
+
+            {
+
+                Id = 2,
+
+                Name = "Game 2",
+
+                Rating = 3,
+
+                Year = DateTime.Parse("1/1/2006")
+
+            });
+
+
+
+            string jsonString = JsonSerializer.Serialize(games);
+
+
+
+            Console.WriteLine(jsonString);
+
+        }
+
+    }
+
+}
+
+3. Пример: По време на теоретичния изпит се предоставя непълен/неработещ/некоректен програмен
+
+фрагмент. Предоставеният фрагмент да се приведе в работещ вид.
+
+
+
+Условие:
+
+Да се напише програма, която трябва да обработва информация за игри в JSON вид.
+
+Създайте клас Car със свойства за:
+
+● Id (int) – номер
+
+● Model (string) – модел на колата
+
+● Km (int) – Километри
+
+● FirstRegister (DateTime) – дата на първа регистрация
+
+ - Car.cs:
+public class Car
+
+    {
+
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public int Km { get; set; }
+
+        public DateTime FirstRegister { get; set; }
+
+    }

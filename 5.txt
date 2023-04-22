@@ -1,0 +1,915 @@
+I.
+1. Дефинирайте IEnumerable. Какво представлява, какво съдържа и за какво се използва?
+-Основен интерфейс в .NET, позволяващ просто обхождане на колекция.
+Съдържа един-единствен метод GetEnumerator(), който връща един IEnumerator<T>.
+Клас, реализиращ IEnumerable<T> може да бъде използван за обхождане с цикъла foreach.
+
+2. Формулирайте правилната дефиниция за IEnumerator, като поставите липсващите думи в текста:
+ Предоставя [[1]] - последователно, еднопосочно обхождане на колекция от произволен тип
+IEnumerator има следните методи: [[2]]. - Reset();, MoveNext();
+IEnumerator притежава свойството: [[3]]. - Current();
+След като имплементираме методите и свойството, можем да използваме [[4] - foreach() цикъл] за нашите User Defined Classes.
+
+3. Посочете какво представлява и какво прави Current() от интерфейса IEnumerator:
+ - Current е свойството, което връща
+
+4. Посочете какво представлява и какво прави MoveNext() от интерфейса IEnumerator:
+ - MoveNext е метод, който връща булева стойност, която посочва крайния елемент на списъка.
+
+II.
+1. Дайте пример за имплементация на интерфейса IEnumerable<T> в C#.
+ - class MyList<T> : IEnumerable<T>
+    {
+        private T[] items;
+        public int Count { get; private set; }        
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < this.Count; i++)
+            {
+                yield return this.items[i];
+            }
+            //foreach (T item in this.items)
+            //{
+            //    yield return item;
+            //}
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+    }
+}
+
+2. Направете сравнение между двата интерфейса IComparable и IComparer, като изберете липсващите думи в текста:
+ Интерфейсът IComparable<T> казва [[1] - "Аз съм нещо сравнимо"] и [[2] - дава метод за сравняване на два обекта].
+Интерфейсът IComparer<T> казва [[3] - "Аз мога да сравнявам"] и [[4] - предоставя начин за  промяна на реда на сортиране на колекция].
+
+3. Направете сравнение между IEnumerable и IEnumerator, като поставите липсващите думи в текста:
+  IEnumerable се използва за [[1] - generic интерфейс], но IEnumerator се използва за [[2] - non-generic интерфейс].
+  IEnumerable има [[3] - само един метод], докато IEnumerator има [[4] - само два метода].
+  IEnumerable [[5] - може да върне IEnumerator]. IEnumerator [[6] - не може да върне IEnumerable].
+
+4. Направете сравнение между IEnumerable и IEnumerator, като поставите липсващите думи в текста:
+  IEnumerable [[1] - не може да запази] текущото състояние на курсора, но IEnumerator [[2] - може да запази].
+  IEnumerable показва [[3] - изброен обект (enumerated object)], докато IEnumerator има [[4]  -for each израз].
+  IEnumerable използва [[5] - абстрактен начин на писане], но IEnumerator използва [[6] - конкретен начин на писане].
+
+III.
+1. Имате следния код:
+
+    public class Scale : IComparable
+    {
+        private var left;
+        private var right;
+
+        public Scale(var left, var right)
+        {
+            this.left = left;
+            this.right = right;
+        }
+        public var GetHavier()
+        {
+            if (left.CompareTo(right) > 0)
+            { return left; }
+            else if (left.CompareTo(right) < 0)
+            { return right; }
+            return default;
+        }
+    }
+
+Модифицирайте кода,така че Везната да може да сравнява всякакви типове данни. Също така трябва да ограничите Везната, че елементите, които ще  сравнява ще бъдат само сравними типове. 
+
+- public class Scale<T> where T : IComparable<T>//2т
+    {
+        private T left; //1т
+        private T right; //1т
+
+        public Scale(T left, T right)//2т
+        {
+            this.left = left;
+            this.right = right;
+        }
+        public T GetHavier()
+        {
+            if (left.CompareTo(right) > 0)
+            { return left; }
+            else if (left.CompareTo(right) < 0)
+            { return right; }
+            return default(T);
+        }
+    }
+
+2. Имате следния код:
+
+        public List<int> CreateList(int item, int count)
+        {
+            List<int> list = new List<int>();
+            for (int i = 0; i < count; i++)
+            {
+                list.Add(item);
+            }
+        }
+
+ Модифицирайте кода,така че методът да работи с всякакъв тип данни.
+
+ - public List<T> CreateList<T>(T item, int count)//2т
+        {
+            List<T> list = new List<T>();//2т
+            for (int i = 0; i < count; i++)
+            {
+                list.Add(item);
+            }
+            return list;//2т
+        }
+
+IV.
+1. Дефинирайте какво представляват Lambda изразите и какъв е техният синтаксис, като попълните липсващите думи в текста.
+  Ламбда изразите представляват [[1] - анонимни функции], които съдържат изрази или последователност от оператори. Всички ламбда изрази използват ламбда оператора [[2] - =>], 
+който може да се чете като "отива в". Лявата страна на ламбда оператора определя [[6] - входните параметри], а дясната страна представлява [[7] - израз или последователност от оператори], която работи с [[6] - входните параметри] на [[8] - анонимната функция] и 
+евентуално връща някакъв резултат.
+
+Ламбда синтаксис: [[11] - (параметри) => {тяло}]
+
+2. Дефинирайте понятието функция, като попълните липсващите думи в текста.
+
+Функцията е [[1] - специално отношение], където на [[2] - всички входни данни] има [[3] - еднозначен изход].
+
+V.
+1. Дайте пример за функция, която проверява дадено цяло число X дали е четно или нечетно. След изпълнението на функцията, на конзолата да се отпечата като резултат само Even или Odd.
+ - Func<int, bool> oddOrEven = (x) => x % 2 == 0;
+   Console.WriteLine(oddOrEven(5) ? "Even" : "Odd");
+
+2. Дайте пример за функция, която проверява дадено число X дали е по-малко от числото 10. След изпълнението на функцията на конзолата да се отпечата като резултат само True или False.
+ - Func<int, bool> func = (x) => x < 10;
+   Console.WriteLine(func(5));
+
+3. Имате следното парче код:
+   List<int> list = new List<int>() { 1, 2, 3, 4, 5, 6 };
+
+        list.FindAll(x => (x % 2) == 0)
+            .ForEach(x => Console.WriteLine($"{x} "));
+
+Какво ще се случи след изпълнението на програмата? Ще се изведе ли нещо като резултат и какъв ще бъде той? Запишете вашия отговор в полето.
+
+ - На конзолата ще се отпечатат всички нечетни числа. 15 1 5 7
+
+
+VI.
+1. Напишете програма, която въвежда  цели числа разделени с  ", ". Изведете  нечетните числа в множеството, сортирани в нарастващ ред. 
+
+Изберете какъв тип на структури от данни ще използвате за решаване на този проблем. Използвайте функционален програмен филтър, сортирайте и отпечатайте на конзолата колекцията от числа на един ред разделени с ", ".
+
+За примерни входни/изходни данни ползвайте следните таблици:
+ 
+ - List<int> list = Console.ReadLine()
+                .Split(", ", StringSplitOptions.RemoveEmptyEntries)
+                .Select(int.Parse)
+                .Where(x => x % 2 != 0)
+                .OrderBy(x => x)
+                .ToList();
+
+            Console.WriteLine(string.Join(", ", list));
+
+2. Напишете програма, която въвежда  цели числа разделени с  ", ". Изведете  четните числа в множеството, сортирани в низходящ ред. 
+
+Изберете какъв тип на структури от данни ще използвате за решаване на този проблем. Използвайте функционален програмен филтър, сортирайте и отпечатайте на конзолата колекцията от числа на един ред разделени с ", ".
+
+За примерни входни/изходни данни ползвайте следните таблици:
+
+ - List<int> list = Console.ReadLine()
+                .Split(", ", StringSplitOptions.RemoveEmptyEntries)
+                .Select(int.Parse)
+                .Where(x => x % 2 == 0)
+                .OrderByDescending(x => x)
+                .ToList();
+
+            Console.WriteLine(string.Join(", ", list));
+
+
+VII, VIII 
+1. Имате даден следния програмен фрагмент:
+
+int[] nums = { 1, 2, 3, 4, 5, 6 };
+nums = nums[[1] - .Where(num => num % 2 == 0)].ToArray();
+
+Коя от следните LINQ заявки и какъв ламбда израз ще използвате, за да филтрирате колекцията, така че тя да съдържа само четни числа?
+
+2. Имате даден следния програмен фрагмент:
+
+int[] nums = { 1, 2, 3, 4, 5, 6 };
+nums = nums[[1] - .Where(num => num % 2 != 0)].ToArray();
+
+Коя от следните LINQ заявки и какъв ламбда израз ще използвате, за да филтрирате колекцията, така че тя да съдържа само нечетни числа?
+
+3. Имате даден следния програмен фрагмент:
+
+int[] nums = { 1, 2, 2, 3, 4, 5, 6, -2, 2, 0, 15, 3, 1, 0, 6 };
+
+nums = nums[[1] - .Distinct()].ToArray();
+
+Коя от следните LINQ заявки ще използвате, за да филтрирате колекцията, така че тя да съдържа само уникални елементи?
+
+4. Имате даден следния програмен фрагмент:
+
+int[] nums = { 1, 2, 3, 4, 5, 6};
+
+int count = nums[[1] - .Count(num => num % 2 == 0);]
+
+Коя от следните LINQ заявки и какъв ламбда израз ще използвате, за да намерите броя на четните числа в колекцията?
+
+5. Имате даден следния програмен фрагмент:
+
+int[] nums = { 11, 99, 33, 55, 77, 44, 66, 22, 88 };
+
+nums = nums[[1] - .OrderBy(x => x)].ToArray();
+Коя от следните LINQ заявки ще използвате, за да подредите числата в колекцията във възходящ ред?
+
+
+IX, X
+1. Обяснете следния фрагмент от код с думи:
+
+int[] nums = { 1, 2, 3, 4, 5, 6};
+
+nums = nums.Reverse();
+
+Console.WriteLine(string.Join(", ", nums));
+
+В полето запишете ред по ред какво прави кода и какво се очаква да получим като резултат.
+
+
+ - Инициализираме масив от цели числа.
+
+Обръщаме подредбата на числата (отзад-напред) с  (nums.Reverse) и запазваме новата подредба на масива nums.
+
+Отпечатваме на конзолата елементите от масива на един ред разделени със ", ". 
+
+Очакван резултат: 6, 5, 4, 3, 2, 1
+
+2. Обяснете следния фрагмент от код с думи:
+
+int[] nums = { 1, 2, 3, 4, 5, 6 };
+
+int[] otherNums = { 7, 8, 9, 0 };
+
+nums = nums.Concat(otherNums);
+
+Console.WriteLine(string.Join(", ", nums));
+
+В полето запишете ред по ред какво прави кода и какво се очаква да получим като резултат.
+
+
+- Инициализираме масив от цели числа nums и друг масив от цели числа otherNums.
+
+Конкатенираме (или слепваме) двата масива - масив otherNums се "залепя" след масива nums.
+
+Отпечатваме на конзолата елементите от масива на един ред разделени със ", ". 
+
+Очакван резултат:
+
+1, 2, 3, 4, 5, 6, 7, 8, 9, 0
+
+3. Обяснете следния фрагмент от код с думи:
+
+List<int> list = new List<int>() { 20, 15, 1, 5, 7, 18, 66 };
+
+list.OrderByDescending(x => x).Take(3);
+
+Console.WriteLine(string.Join(", ", list));
+
+В полето запишете ред по ред какво прави кода и какво се очаква да получим като резултат.
+
+ - Инициализираме списък с цели числа.
+
+Сортираме числата от колекцията в низходящ ред и вземаме първите три числа от тях.
+
+Очакван резултат: 20, 15, 1, 5, 7, 18, 66
+
+Списъкът с числа си остава същия, защото OrderByDescending връща нов IOrderedEnumerable списък, а в дадения код не се презаписва новата подредба на числата върху предишния списък с числа.
+
+
+4. Обяснете следния фрагмент от код с думи:
+
+List<int> list = new List<int>() { 20, 15, 1, 5, 7, 18, 66 };
+
+list.OrderByDescending(x => x).Skip(3).ToList();
+
+Console.WriteLine(string.Join(" ", list));
+
+В полето запишете ред по ред какво прави кода и какво се очаква да получим като резултат.
+
+ - Инициализираме списък с цели числа.
+
+Сортираме числата от колекцията в низходящ ред и пропускаме първите три числа от тях.
+
+Очакван резултат: 20, 15, 1, 5, 7, 18, 66
+
+Списъкът с числа си остава същия, защото linq изразите връщат нов списък, а в дадения код не се презаписва новата подредба на числата върху предишния списък с числа.
+
+
+XI.
+1. На конзолата ще ви бъдат подадени цели числа записани на един ред и разделени с интервал. Например: 5 7 12 56 24 3 8 
+
+Напишете собствена функция на C# за парсване на цели числа. Запишете числата в подходяща структура от данни, след което отпечатайте числата на конзолата на един ред разделени със запетая и интервал.
+
+ - string input = Console.ReadLine();
+Func<string, int> parser = (x) => int.Parse(x);
+int[] nums = input.Split().Select(parser).ToArray();
+Console.WriteLine(string.Join(", ", nums));
+
+2. На конзолата ще ви бъдат подадени реални числа записани на един ред и разделени с интервал. Например: 5.12 7.17 1.2 5.16 24.1 3 8 
+
+Напишете собствена функция на C# за парсване на реални числа. Запишете числата в подходяща структура от данни, след което отпечатайте числата на конзолата на един ред разделени със запетая и интервал.
+
+ - string input = Console.ReadLine();
+Func<string, double> parser = (x) => double.Parse(x);
+double[] nums = input.Split().Select(parser).ToArray();
+Console.WriteLine(string.Join(", ", nums));
+
+3. На конзолата ще ви бъдат подадени цели числа записани на един ред и разделени с интервал. Например: 5 7 12 56 24 3 8 
+
+Напишете собствена функция на C#, която да намира сумата на тези числа. 
+
+Накрая отпечатайте сбора на числата.
+
+ -  string input = Console.ReadLine();
+            int[] nums = input.Split().Select(int.Parse).ToArray();
+            Func<int[], int> sum = (x) =>
+            {
+                int sum = 0;
+                foreach (var item in x)
+                {
+                    sum += item;
+                }
+                return sum;
+            };
+            Console.WriteLine(sum(nums));
+
+XII,XIII
+1. Опишете какво представляват референциите към функции/методи в C#, като поставите липсващите думи в текста:
+
+Ламбда функциите могат да бъдат записани в променливи от тип [[1] - делегат]. [[2] - Делегатите] представляват специален тип [[3] - променливи], които съдържат [[4] - функции]. Типовете Func и Action са [[5] - generic ] и съдържат: на последна позиция [[6] - типа на връщаната стойност], а на първите позиции се задават [[7] - типовете на параметрите] 
+на функциите. Променливите от тези типове са [[8] - референции] към функции. 
+
+
+2. Посочете, кое от дадените твърдения е вярно за потоците в C#. Трябва да изберете вярно или невярно от падащото меню срещу всяко твърдение.
+
+Потоците се използват, когато програмата трябва да прочете или запише данни от или във външен източник на данни. [[1] - Вярно]
+
+Потокът е наредена последователност от байтове. [[1] - Вярно]
+
+Тези байтове се изпращат един след друг и могат да се получават в ред различен от този в който са били изпратени. [[2] - Невярно]
+
+Потоците осигуряват последователен достъп до своите елементи. [[1] - Вярно]
+
+
+Потоците трябва да се отворят преди употреба и да се затворят накрая. [[1] - Вярно]
+
+Можем да манипулираме подредбата на данните в потока. [[2] - Невярно]
+
+3. Имате следния примерен код:
+
+    class Person
+    {
+        private int age;
+
+        public int Age
+        {
+            get { return age; }
+            private set 
+            { 
+                if(value < 0)
+                {
+                    [[1] - throw new ArgumentOutOfRangeException("Age must be positive number!");]
+                }
+                age = value;
+            }
+        }
+    }
+
+По какъв начин ще хвърлите изключение, че числото, което е въведено е невалидно?
+
+4. Посочете кой от изброените класове е базовия клас за потоците в C#.
+ - Stream
+
+5. Посочете кое от изброените твърдения е вярно за работата на изключенията в C#.
+ - Ако по време на изпълнението на програмата някой от извикваните методи неочаквано хвърли изключение, то нормалният ход на програмата се преустановява. 
+
+6. Посочете кое от твърденията е вярно за изключенията:
+ - Изключенията са уведомление за дадено събитие, нарушаващо нормалната работа на една програма.
+ - Когато възникне изключение, конкрет­ното състояние на програмата се запазва и се търси обработчик на изключението (exception handler).
+ - Изключенията се предизвикват или "хвърлят" (throw an exception) от програмен код, който трябва да сигнализира на изпълняващата се прог­рама за грешка или необичайна ситуация. 
+
+
+XIV,XV
+1. Решете правилно задачата. Имате дадени парчета от код, поставете отделните парчета така, че да получите правилно работещ код, който трябва да прочете данните от един файл и да ги копира в друг.
+
+[[1] - using (var reader = new StreamReader("../../../Program.cs"))             {]
+
+[[2] - using (var writer = new StreamWriter("../../../Copy.cs"))                 {]
+
+[[3] - string line = reader.ReadLine();]
+
+[[4] - while (line != null)                     {]
+
+[[5] - writer.WriteLine(line);]
+
+[[6] - line = reader.ReadLine();]
+
+[[7] - }                 }             }]
+
+
+2. Решете правилно задачата. Имате дадени парчета от код, поставете отделните парчета така, че да получите правилно работещ код, който трябва да прочете данните от един файл и да ги копира в друг.
+
+[[1] - using (var source = new FileStream("../../../Image.jpg", FileMode.Open))  {]
+
+[[2] - using (var destination = new FileStream("../../../ImageCopy.jpg", FileMode.Create))                 {]
+
+[[3] - byte[] buffer = new byte[1024];]
+
+[[4] -  while (true)                     {]
+
+[[5] - int readBytes = source.Read(buffer, 0, buffer.Length);]
+
+[[6] - if (readBytes == 0) break;]
+
+[[7] - destination.Write(buffer, 0, readBytes);]
+
+[[8] - }                 }             }]
+
+
+3. Обяснете какво ще се случи, ако потребителя напише в конзолата 123. Също така какво ще се случи, ако потребителя реши да въведе Hello.
+   while (true)
+	{
+            try 
+	{	        
+		int number = int.Parse(Console.ReadLine());
+        Console.WriteLine(number);
+			break;
+	}
+	catch (FormatException ex)
+	{
+		Console.WriteLine(ex.Message);
+		throw;
+	}
+        }
+
+- Ако потребителя въведе цяло число, това число ще се отпечата на конзолата и изпълнението на програмата се прекратява. 
+
+Когато потребителя въведе вход на конзолата различен от цяло число, програмата ще прихване изключението FormatException и на конзолата ще се отпечата съобщение за грешка Input string was not in a correct format. Програмата се изпълнява докато потребителя въведе цяло число. 
+
+
+4. Обяснете какво ще се случи и защо, ако потребителя въведе числото 2147483648: 
+   while (true)
+	{
+            try 
+	{	        
+		int number = int.Parse(Console.ReadLine());
+        Console.WriteLine(number);
+			break;
+	}
+	catch (FormatException ex)
+	{
+		Console.WriteLine(ex.Message);
+		throw;
+	}
+        }
+
+- Ако потребителя въведе числото 2147483648 програмата ще хвърли изключение от типа System.OverflowException със следното съобщение за грешка: Value was either too large or too small for an Int32. 
+
+Това се получава така, защото липсва catch клауза за прихващане на изключение от този тип.
+
+
+XVI.
+1. Напишете програма на C#, която да дефинира делегат, който може да приема метод, който сумира две реални числа. Накрая резултатът да се отпечата на конзолата.
+ -  public delegate double SumDelegate(double firstNumber, double secondNumber);
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            SumDelegate del = new SumDelegate(Sum);
+            Console.WriteLine(del(2.5, 3.14));
+        }
+
+2. Напишете програма на C#, която да дефинира делегат, който може да приема анонимна функция, която умножава две цели числа. Накрая резултатът да се отпечата на конзолата.
+  -public delegate int Delegate(int firstNumber, int secondNumber);
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Delegate del = new Delegate((x, y) => x *  y);
+            Console.WriteLine(del(2, 3));
+        }
+    }
+XVII,XVII,XIX,XX,XI
+1. Имате даден следният програмен фрагмент:
+
+Program.cs
+
+try
+{
+    string name = Console.ReadLine();
+    int age = int.Parse(Console.ReadLine());
+    Person person = new Person(name, age);
+}
+catch (ArgumentNullException ex)
+{
+    Console.WriteLine(ex.Message);
+}
+
+ 
+- using System;
+
+namespace _01_ValidPerson_KEY
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            try
+            {
+                string name = Console.ReadLine();
+                int age = int.Parse(Console.ReadLine());
+                Person person = new Person(name, age);
+            }
+            catch (ArgumentNullException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            //2t
+            //catch (ArgumentOutOfRangeException ex)
+            //{
+            //    //2t
+            //    Console.WriteLine(ex.Message);
+            //}
+        }
+    }
+
+    class Person
+    {
+        private string firstName;
+        private int age;
+
+        public Person(string firstName, int age)
+        {
+            FirstName = firstName;
+            Age = age;//2t
+        }
+
+        public string FirstName
+        {
+            get { return firstName; }
+            private set
+            {
+                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentNullException("value", "The first name cannot be null or empty");
+                }
+                firstName = value;
+            }
+        }
+
+        public int Age
+        {
+            get { return age; }//2t
+            private set
+            {
+                if (value < 0 || value > 120)
+                {
+                    throw new ArgumentOutOfRangeException("value", "Age should be in the range [0..120]");
+                }
+                age = value;
+            }
+        }
+    }
+}
+
+
+2. Имате даден клас Book със следните членове на класа. Авторите може да са анонимни, един или повече. Book трябва да има само един конструктор!
+
+Book.cs
+
+private string title;
+        private int year;
+        public Book(string title, int year)
+        {
+            this.Title = title;
+            this.Year = year;
+            this.Authors = authors;
+        }
+        public string Title
+        {
+            get { return title; }
+            private set { title = value; }
+        }
+        public int Year
+        {
+            get { return year; }
+            private set { year = value; }
+        }
+        public IReadOnlyList<string> Authors { get; private set; }
+ 
+        public override string ToString()
+        {
+            return $"{this.Title} - {this.Year} Authors: {string.Join(", ", this.Authors)}";        }
+
+- using System;
+using System.Collections;
+using System.Collections.Generic;
+
+namespace _02_LibraryIterator_KEY
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Book bookOne = new Book("Animal Farm", 2003, "George Orwell");
+            Book bookTwo = new Book("The Documents in the Case", 2002, "Dorothy Sayers", "Robert Eustace");
+            Book bookThree = new Book("The Documents in the Case", 1930);
+
+            Library library = new Library(bookOne, bookTwo, bookThree);
+
+            foreach (var book in library)
+            {
+                Console.WriteLine(book);
+            }
+
+        }
+    }
+
+    class Book
+    {
+        private string title;
+        private int year;
+        public Book(string title, int year, params string[] authors)//2t
+        {
+            this.Title = title;
+            this.Year = year;
+            this.Authors = authors;
+        }
+        public string Title
+        {
+            get { return title; }
+            private set { title = value; }
+        }
+        public int Year 
+        {
+            get { return year; }
+            private set { year = value; }
+        }
+        public IReadOnlyList<string> Authors { get; private set; }
+
+        public override string ToString()
+        {
+            return $"{this.Title} - {this.Year} Authors: {string.Join(", ", this.Authors)}";
+        }
+    }
+
+    class Library : IEnumerable<Book>//2t
+    {
+        private List<Book> books;
+
+        public Library(params Book[] books)//2t
+        {
+            this.books = new List<Book>(books);
+        }
+
+        public IEnumerator<Book> GetEnumerator()
+        {
+            foreach (var book in this.books)
+            {
+                yield return book;//2t
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+    }
+}
+
+3. Напишете програма, която изпълнява някои математически операции върху дадена колекция. На първия ред са дадени списък от числа. На следващите редове се подават различни команди, които трябва да се прилагат за всички числа в списъка:
+
+·        "add"-> добави 1 към всяко число;
+
+·        "multiply"-> умножава всяко число по 2;
+
+·        "subtract"-> изважда 1 от всяко число;
+
+·        "print"-> извежда колекцията.
+
+·        Входът ще приключи с команда "end".
+
+·        Използвайте функции.
+
+ - using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _04_ApplyArithmetics_KEY
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Func<int, int> addition = x => x + 1; //2т
+            Func<int, int> multiplication = x => x * 2; //2т
+            Func<int, int> subtraction = x => x - 1; //2т
+            Action<int> print = (x) => Console.Write($"{x} "); //2т
+
+
+            List<int> numbers = Console.ReadLine()
+                .Split()
+                .Select(int.Parse)
+                .ToList();
+
+            string cmd = Console.ReadLine();
+
+            while (!cmd.Equals("end"))
+            {
+                switch (cmd)
+                {
+                    case "add":
+                        numbers = numbers.Select(addition).ToList();
+                        break;
+                    case "multiply":
+                        numbers = numbers.Select(multiplication).ToList();
+                        break;
+                    case "subtract":
+                        numbers = numbers.Select(subtraction).ToList();
+                        break;
+                    case "print":
+                        foreach (var item in numbers)
+                        {
+                            print(item);
+                        }
+                        Console.WriteLine();
+                        break;
+                }
+
+                cmd = Console.ReadLine();
+            }
+        }
+    }
+}
+
+4. Имате даден клас Person:
+
+Person.cs
+
+private string name;
+        private int age;
+        private string city;
+ 
+        public Person(string name, int age, string city)
+        {
+            Name = name;
+            Age = age;
+            City = city;
+        }
+ 
+        public string Name
+        {
+            get { return name; }
+            private set { name = value; }
+        }
+        public int Age
+        {
+            get { return age; }
+            private set { age = value; }
+        }
+        public string City
+        {
+            get { return city; }
+            private set { city = value; }
+        }
+
+- using System;
+using System.Collections.Generic;
+
+namespace _03_ComperaPeople_KEY
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<Person> people = new List<Person>();
+
+            string cmd = Console.ReadLine();
+
+            while (!cmd.Equals("END"))
+            {
+                string[] info = cmd.Split();
+                Person person = new Person(info[0], int.Parse(info[1]), info[2]);
+                people.Add(person);
+
+                cmd = Console.ReadLine();
+            }
+
+            int n = int.Parse(Console.ReadLine());
+
+            Person p = people[n - 1];
+            int equalsPeopleCount = 0;
+            int notEqualsPeoplesCount = 0;
+
+            for (int i = 0; i < people.Count; i++)
+            {
+                if (i == n - 1)
+                {
+                    continue;
+                }
+                if (people[i].CompareTo(p) == 0)
+                {
+                    equalsPeopleCount++;
+                }
+                else
+                {
+                    notEqualsPeoplesCount++;
+                }
+            }
+
+            Console.WriteLine(equalsPeopleCount == 0 ? "No matches!" :
+            $"{equalsPeopleCount} {notEqualsPeoplesCount} {people.Count}");
+        }
+    }
+
+    class Person : IComparable<Person>
+    {
+        private string name;
+        private int age;
+        private string city;
+
+        public Person(string name, int age, string city)
+        {
+            Name = name;
+            Age = age;
+            City = city;
+        }
+
+        public string Name
+        {
+            get { return name; }
+            private set { name = value; }
+        }
+        public int Age
+        {
+            get { return age; }
+            private set { age = value; }
+        }
+        public string City
+        {
+            get { return city; }
+            private set { city = value; }
+        }
+
+        //правилно имплементирани интерфейс IComparable и метод Compare 6т
+        public int CompareTo(Person other)
+        {
+            int result = this.Name.CompareTo(other.Name);
+            if (result == 0)
+            {
+                result = this.Age.CompareTo(other.Age);
+                if (result == 0)
+                {
+                    result = this.City.CompareTo(other.City);
+                }
+            }
+            return result;
+        }
+    }
+}
+
+
+5. Напишете програма, която филтрира списък с имена по тяхната дължина. На първия ред ще ви бъде дадено цяло число n, представляващо дължина на име. На втория ред ще ви бъде дадени някои имена като символни низове, разделени с интервал.
+
+Напишете функция, която филтрира само имената, чиято дължина е по-малка или равна на n. И функция, която отпечатва имената.
+
+Използвайте ваши собствени функции!
+
+За ваше улеснение ви е предоставен код, който обаче е грешен/непълен. Вашата задача е да откриете и поправите грешките в кода, така че той да работи правилно!
+
+- using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _05_FilterNames_KEY
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int length = int.Parse(Console.ReadLine());
+            List<string> names = Console.ReadLine().Split().ToList();
+
+            Func<string, int, bool> filter = (x, l) => x.Length <= l; //2т
+            Action<string> print = x => Console.WriteLine(x); //2т
+
+            names.Where((n, l) => filter(n, length)) //2т
+                .ToList()
+                .ForEach(print); //2т
+        }
+    }
+}

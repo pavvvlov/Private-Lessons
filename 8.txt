@@ -1,0 +1,639 @@
+I
+1. Посочете определение за понятието бази от данни.
+ - База от данни се нарича всяка организирана колекция от данни или информация.
+
+2. Моля свържете вярното твърдение за посочените типове данни:
+ - VARCHAR(M) - текстов тип данни
+   DOUBLE - тип данни за реални числа
+   FLOAT - тип данни за цели числа
+   
+3. Моля посочете вярното твърдение за дефиниране на понятието бази от данни.
+ - База от данни се нарича всяка организирана колекция от данни (информация).
+
+
+II
+1. Напишете заявка за създаване на таблица customers, която да съдържа три колони, които са:
+
+id - от тип цели числа, name - от тип текст с дължина 50 знака и birthday от тип дата.
+
+ - CREATE TABLE customers(
+
+id INT(11) PRIMARY KEY,
+
+name VARCHAR(50),
+
+birthday DATE,
+
+);
+
+
+2. Имате следната заявка за създаване на таблица directors в база от данни Movies:
+
+CREATE TABLE directors(
+
+id INT PRIMARY KEY,
+
+director_name VARCHAR(10),
+
+notes VARCHAR(20)
+
+);
+
+Моля, определете от какъв тип данни и каква дължина са трите колони в таблицата.
+
+ - id е от тип INTEGER
+
+director_name е от текстов тип с дължина 10 знака
+
+notes е от текстов тип с дължина 20 знака
+
+3. В посочения пример имате заявка за създаване на таблица persons с колони person_id, first_name, passport_id и salary. Моля определете и изберете липсващите думи за всяка колона от таблицата.
+
+CREATE TABLE persons(
+
+person_id  [[1] - INT] PRIMARY KEY,
+
+first_name [[2] - VARCHAR(50)],
+
+salary [[3] - DECIMAL(8,2)],
+
+passport_id [[1]  - - INT] UNIQUE,
+
+CONSTRAINT fk_persons_passports FOREIGN KEY(passport_id) REFERENCES passports(passport_id)
+
+);
+
+
+III
+1. Създайте заявка, която да създаде таблица directors в база от данни Movies, със следните колони:
+
+
+id е от тип цяло число и да бъде първичен ключ
+
+director_name е от текстов тип с дължина 10 знака
+
+notes е от текстов тип с дължина 20 знака.
+
+ - CREATE TABLE directors(
+
+id INT PRIMARY KEY,
+
+director_name VARCHAR(10),
+
+notes VARCHAR(20)
+
+);
+
+
+2. Напишете заявка за създаване на таблица customers, която да съдържа три колони, които са:
+
+id - от тип цели числа, name - от тип текст с дължина 50 знака и birthday от тип дата.
+
+ - CREATE TABLE customers(
+
+id INT(11) PRIMARY KEY,
+
+name VARCHAR(50),
+
+birthday DATE,
+
+);
+
+3. В посочения пример имате заявка за създаване на таблица persons с колони person_id, first_name, passport_id и salary. Моля открийте и изберете липсващите думи за всяка колона от таблицата.
+
+CREATE TABLE persons(
+
+person_id  [[1] - INT] PRIMARY KEY,
+
+first_name [[2] - VARCHAR(50)],
+
+salary [[3] - DECIMAL(8,2)],
+
+passport_id [[1] - INT] UNIQUE,
+
+CONSTRAINT fk_persons_passports FOREIGN KEY(passport_id) REFERENCES
+
+
+IV,V
+1. Имате заявка за създаване на таблица cities с две колони city_id и name. Посочете липсващите думи в кода, така че да получите коректно работеща заявка.
+
+[[3] - CREATE] TABLE cities(
+
+city_id [[2] - INT] PRIMARY KEY,
+
+name VARCHAR(50)
+
+);
+
+2. Посочете вярното твърдение за по-долу посочения код:
+
+CREATE TABLE Persons(
+
+            ID int NOT NULL,
+
+            FirstName varchar(255) NOT NULL,
+
+            LastName varchar(255) NOT NULL,
+
+          );
+
+
+ - Създава таблица с колони ID от тип цяло цисло, FirstName от текстов тип и LastName от текстов тип и не позволява в клетките да има празна стойност.
+
+
+VI,VII
+1. Създайте таблица cities, която да съдържа две колони - id и name, като прецените типа данни, който да укажете за двете колони. Колоната id да бъде първичен ключ.
+ - CREATE TABLE cities
+
+(
+
+city_id INT PRIMARY KEY,
+
+name VARCHAR(50)
+
+);
+
+
+2. Създайте таблица persons, която да съдържа две колони city_id, FirstName и LastName, като прецените типа данни, който да укажете за колоните. Колоната city_id да бъде първичен ключ.
+
+ - CREATE TABLE persons
+
+(
+
+city_id INT PRIMARY KEY,
+
+FirstName VARCHAR(50),
+
+LastName VARCHAR(50)
+
+);
+
+
+VIII,IX
+1. Направете разлика между видовете връзки и посочете вярното твърдение за всяка една връзка.
+ - Връзка едно към едно - При тази връзка на един запис от първата таблица съответства точно един запис от втората таблица.
+ - Връзка едно към много - При тази връзка един запис от първата таблица съответства на много записи от втората таблица.
+ - Връзка много към много - При тази връзка на един запис от първата таблица съответстват много записи от втората таблица и обратно.
+
+2. Моля, посочете вярното твърдение за връзка едно към много.
+ - При тази връзка един запис от първата таблица съответства на много записи от втората таблица.
+
+3. Моля, посочете вярното твърдение за връзка много към много.
+ - При тази връзка на един запис от първата таблица съответстват много записи от втората таблица и обратно.
+
+
+X,XI
+1. Имате код за създаване на две таблици. Посочете вида на връзката, която се получава.
+
+CREATE TABLE mountains(
+
+  mountain_id INT PRIMARY KEY,
+
+  mountain_name VARCHAR(50)
+
+);
+
+CREATE TABLE peaks(
+
+  peak_id INT PRIMARY KEY,
+
+  mountain_id INT,
+
+  CONSTRAINT fk_peaks_mountains
+
+  FOREIGN KEY (mountain_id)
+  REFERENCES mountains(mountain_id)
+);
+
+ - Един-към-много/Много-към-един
+
+2. Имате код за създаване на таблици. Посочете вида на връзката, която се получава.
+
+CREATE TABLE employees(
+
+  employee_id INT PRIMARY KEY,
+  employee_name VARCHAR(50)
+
+);
+
+CREATE TABLE projects(
+  project_id INT PRIMARY KEY,
+  project_name VARCHAR(50)
+
+);
+
+CREATE TABLE employees_projects(
+  employee_id INT,
+  project_id INT,
+
+  CONSTRAINT pk_employees_projects
+
+  PRIMARY KEY(employee_id, project_id),
+
+  CONSTRAINT fk_employees_projects_employees
+
+  FOREIGN KEY(employee_id)
+
+  REFERENCES employees(employee_id),
+
+  CONSTRAINT fk_employees_projects_projects
+
+  FOREIGN KEY(project_id)
+
+  REFERENCES projects(project_id)
+
+);
+
+ - Много-към-много
+
+3. Имате код за създаване на таблици. Посочете вида на връзката, която се получава.
+
+CREATE TABLE drivers(
+
+  driver_id INT PRIMARY KEY,
+
+  driver_name VARCHAR(50)
+
+);
+
+CREATE TABLE cars(
+
+  car_id INT PRIMARY KEY,
+
+  driver_id INT UNIQUE,
+
+  CONSTRAINT fk_cars_drivers FOREIGN KEY
+  (driver_id) REFERENCES drivers(driver_id)
+
+);
+
+CONSTRAINT fk_cars_drivers
+FOREIGN KEY (driver_id)
+REFERENCES drivers(driver_id)
+
+ - Едно - към - едно
+
+
+XII
+1. Имате код за създаване на таблици, които реализират връзка между таблици едно към едно. Открийте липсващите думи и ги поставете в текста чрез влачене, така че да получите коректно работещ код.
+
+CREATE TABLE drivers(
+
+  driver_id INT [[4]],
+
+  driver_name VARCHAR(50)
+
+);
+
+CREATE TABLE cars(
+
+  car_id INT PRIMARY KEY,
+
+  driver_id INT UNIQUE,
+
+  [[3]] fk_cars_drivers [[1]]
+  (driver_id) [[2]] drivers(driver_id)
+
+);
+
+ - CREATE TABLE drivers(
+
+  driver_id INT PRIMARY KEY,
+
+  driver_name VARCHAR(50)
+
+);
+
+CREATE TABLE cars(
+
+  car_id INT PRIMARY KEY,
+
+  driver_id INT UNIQUE,
+
+  CONSTRAINT fk_cars_drivers FOREIGN KEY
+  (driver_id) REFERENCES drivers(driver_id)
+
+);
+
+
+2. Имате код за създаване на таблици, които реализират връзка между таблици едно към много. Открийте липсващите думи и ги поставете в текста чрез влачене, така че да получите коректно работещ код.
+
+CREATE TABLE mountains(
+
+  mountain_id INT [[4]],
+
+  mountain_name VARCHAR(50)
+
+);
+
+CREATE TABLE peaks(
+
+  peak_id INT [[4]],
+
+  mountain_id INT,
+
+  [[3]] fk_peaks_mountains
+
+  [[1]] (mountain_id)
+  [[2]] mountains(mountain_id)
+);
+
+ - CREATE TABLE mountains(
+
+  mountain_id INT PRIMARY KEY,
+
+  mountain_name VARCHAR(50)
+
+);
+
+CREATE TABLE peaks(
+
+  peak_id INT PRIMARY KEY,
+
+  mountain_id INT,
+
+  CONSTRAINT fk_peaks_mountains
+
+  FOREIGN KEY (mountain_id)
+  REFERENCES mountains(mountain_id)
+);
+
+
+
+XIII,XIV
+1. Ограниченията задават правила за данните в дадена таблица. Имате посочени примери за често срещани ограничения. Моля свържете ограничението с неговото вярно описание.
+
+ - NOT NULL - не позволява в клетка да има празна стойност
+ - UNIQUE - гарантира, че всички данни в колоната са различни
+ - PRIMARY KEY - идентифицира уникално всеки запис в таблицата
+
+2. Ограниченията задават правила за данните в дадена таблица. Имате посочени примери за често срещани ограничения. Моля свържете ограничението с неговото вярно описание.
+
+ - UNIQUE - гарантира, че всички данни в колоната са различни
+ - FOREIGN KEY - уникално идентифицира запис от друга таблица
+ - CHECK - гарантира, че всички данни в колоната удовлетворят дадено условие
+
+3. Ограниченията задават правила за данните в дадена таблица. Имате посочени примери за често срещани ограничения. Моля свържете ограничението с неговото вярно описание.
+
+ - DEFAULT - Задава стойност по подразбиране за колоната
+ - FOREIGN KEY - уникално идентифицира запис от друга таблица
+ - CHECK - гарантира, че всички данни в колоната удовлетворят дадено условие
+
+4. Ограниченията задават правила за данните в дадена таблица. Посочете вярното твърдение за ограничението NOT NULL.
+ - не позволява в клетка да има празна стойност
+
+5. Ограниченията задават правила за данните в дадена таблица. Посочете вярното твърдение за ограничението CHECK.
+ - гарантира, че всички данни в колоната удовлетворят дадено условие
+
+6. Ограниченията задават правила за данните в дадена таблица. Посочете вярното твърдение за ограничението PRIMARY KEY.
+ - идентифицира уникално всеки запис в таблицата
+
+
+XV,XVI
+1. Имате заявка, която свързва две таблици от база от данни Orders и Persons. От изброените 6 думи, изберете три верни, с които да получите работеща заявка и ги поставете в дадения код.
+
+CREATE TABLE Orders(
+
+    OrderID int NOT NULL,
+
+    OrderNumber int NOT NULL,
+
+    PersonID int,
+
+    [[1] - PRIMARY KEY] (OrderID),
+
+    [[2] - FOREIGN KEY] (PersonID) [[3] - REFERENCES] Persons(PersonID)
+
+);
+
+2. Имате заявка, която създава таблица Persons и трябва да се постави ограничение годините на хората да са по-големи от 20. От трите посочени думи, изберете ограничението, което трябва да поставите за да решите коректно примера. 
+
+
+
+CREATE TABLE Persons(
+
+            PersonID int NOT NULL,
+
+            FirstName varchar(255) NOT NULL,
+
+            LastName varchar(255) NOT NULL,
+
+            Age int,
+
+            [[1]] (Age >= 20)
+
+ - §  CHECK – гарантира, че всички данни в колоната удовлетворят дадено условие
+
+CREATE TABLE Persons(
+
+            PersonID int NOT NULL,
+
+            FirstName varchar(255) NOT NULL,
+
+            LastName varchar(255) NOT NULL,
+
+            Age int,
+
+            CHECK (Age >= 20)
+
+
+3. Имате заявка, която създава таблица Persons и трябва да се използва ограничение, което да постави стойност по подразбиране за град Burgas. От трите посочени думи, изберете ограничението, което трябва да поставите за да решите коректно примера. 
+
+
+
+
+CREATE TABLE Persons(
+
+            PersonID int NOT NULL,
+
+            FirstName varchar(255) NOT NULL,
+
+            LastName varchar(255) NOT NULL,
+
+            Age int,
+
+            City varchar(255) [[3] - DEFAULT] 'Burgas'
+
+);
+
+
+XVII
+1. Имате пример за създаване на първичен ключ на базата на една колона в таблица Persons:
+
+CREATE TABLE Persons(
+
+            PersonID int NOT NULL,
+
+            FirstName varchar(255) NOT NULL,
+
+            LastName varchar(255) NOT NULL,
+
+            Age int
+
+     
+
+Допишете реда в който трябва да се създаде първичен ключ, като заявката работи коректно.
+
+ - CREATE TABLE Persons(
+
+            PersonID int NOT NULL,
+
+            FirstName varchar(255) NOT NULL,
+
+            LastName varchar(255) NOT NULL,
+
+            Age int,
+
+            PRIMARY KEY(PersonID) );
+
+
+2. 
+Допишете следната заявка за таблица Persons, така че номера на човек да бъде уникален. Завката да дава коректен резултат. 
+
+CREATE TABLE Persons(
+
+            PersonID int NOT NULL,
+
+            FirstName varchar(255) NOT NULL,
+
+            LastName varchar(255) NOT NULL,
+
+            Age int,
+
+   
+ - CREATE TABLE Persons(
+
+            PersonID int NOT NULL,
+
+            FirstName varchar(255) NOT NULL,
+
+            LastName varchar(255) NOT NULL,
+
+            Age int,
+
+            UNIQUE(ID) );
+
+        
+3. Искате да изведете от таблица Persons хората, които са на 30 години. Допишете заявката, така че да получите като резултат в таблицата първо име, фамилия и години. Използвайте необходимото ограничение. 
+
+CREATE TABLE Persons(
+
+            PersonID int NOT NULL,
+
+            FirstName varchar(255) NOT NULL,
+
+            LastName varchar(255) NOT NULL,
+
+           );
+
+ - CREATE TABLE Persons(
+
+            PersonID int NOT NULL,
+
+            FirstName varchar(255) NOT NULL,
+
+            LastName varchar(255) NOT NULL,
+
+            Age int,
+
+            CHECK (Age = 30)
+
+);
+
+
+XVIII
+Като използвате дадената ER диаграма, напишете заявките за създаване база данни online_store и за създаване на таблиците в нея.
+
+ - CREATE DATABASE online_store;
+
+USE online_store;
+
+CREATE TABLE cities(
+
+city_id INT PRIMARY KEY,
+
+name VARCHAR(50)
+
+);
+
+
+
+CREATE TABLE customers(
+
+customer_id INT PRIMARY KEY,
+
+name VARCHAR(50),
+
+birthday DATE,
+
+city_id INT,
+
+CONSTRAINT fk_customers_cities FOREIGN KEY(city_id)
+
+REFERENCES cities(city_id)
+
+);
+
+
+
+CREATE TABLE orders(
+
+order_id INT PRIMARY KEY,
+
+customer_id INT,
+
+CONSTRAINT fk_orders_customers FOREIGN KEY(customer_id)
+
+REFERENCES customers(customer_id)
+
+);
+
+
+
+CREATE TABLE item_types(
+
+item_type_id INT PRIMARY KEY,
+
+name VARCHAR(50)
+
+);
+
+
+
+CREATE TABLE items(
+
+item_id INT PRIMARY KEY,
+
+name VARCHAR(50),
+
+item_type_id INT,
+
+CONSTRAINT fk_items_item_types FOREIGN KEY(item_type_id)
+
+REFERENCES item_types(item_type_id)
+
+);
+
+
+
+CREATE TABLE order_items(
+
+order_id INT,
+
+item_id INT,
+
+CONSTRAINT pk_order_items PRIMARY KEY (order_id, item_id),
+
+CONSTRAINT fk_order_items_orders FOREIGN KEY(order_id)
+
+REFERENCES orders(order_id),
+
+CONSTRAINT fk_order_items_items FOREIGN KEY(item_id)
+
+REFERENCES items(item_id)
+
+);
+
+Създаване на базата данни - 4 т.
+
+Създаване на 6 броя таблици х 6 точки.  

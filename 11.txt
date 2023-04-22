@@ -1,0 +1,553 @@
+I,II,III,IV
+1. Какво стои зад буквата C в абревиатурата на архитектурния шаблон MVC?
+ - Controller
+
+2. Какво стои зад буквата M в абревиатурата на архитектурния шаблон MVC?
+ - Model
+
+3. Дефинирайте понятието Model от MVC концепцията.
+ - Моделът в MVC служи за управление на данни и бизнес-логика
+
+4. Посочете значението на абревиатурата MVC.
+ - Model View Controller
+
+5. Какво стои зад буквата V в абревиатурата на архитектурния шаблон MVC?
+ - View
+
+6. Дефинирайте понятието Изглед (View) от MVC концепцията.
+ - Изгледът в MVC служи за обработка на заявките на потребителя към приложението
+
+7. Дефинирайте понятието Контролер (Controller) от MVC концепцията.
+ - Контролерът в MVC служи за обработка на заявките на потребителя към приложението
+
+
+
+V
+1. Обяснете как си взаимодействат трите слоя на трислойната архитектура.
+ - Слоя за данни се явява сървъра, който съдържа всички данни на приложението. Там се съдържат всички таблици на БД, файлове и други средстава за съхранение на информация.
+Слой за услуги (слой за бизнес-логика) работи като мост между слоя за данни и презентационния слой. Всички данни преминават през слоя за услуги преди да се предадат към презентационния слой. Слоя за услуги се състои от бизнес-логиката на приложението, същностни обекти (entity objects), всички друго компоненти, използваеми във връзка с бизнес-логиката. Слоя за услуги стъпва над слоя за данни.
+Презентационен слой - това е слоя, с който потребителя си взаимодейства с приложението. Слоя съдържа общ код на потребителския интерфейс, както и модели на изгледите.
+
+2. Обяснете как може да бъде реализиран презентационния слой в ASP.NET Core приложение
+ - В ASP.NET Core презентационния слой се реализира чрез изгледи. Изгледите са .cshtml файлове, които използват Razor и към тях могат да се подават данни от приложението под формата на силно типизирани обекти (ViewModel), както и вградените ViewBag и ViewData.
+
+
+VI,VII
+1. Посочете кое действие от компонентния тест се случва в Act фазата.
+ - извървшане на действието за тестване
+
+2. Посочете кое действие от компонентния тест се случва в Arrange фазата.
+ - подготвяне на обекта за тестване
+
+3. Посочете кое действие от компонентния тест се случва в Assert фазата.
+ - проверка на резултата от тестването
+
+4. Дефинирайте значението на абревиатурата ААА в контекста на компоненто тестване.
+ - Arrange-Act-Assert
+
+5. Посочете коя е анотацията, която се използва за отбелязване на отделни компонентни тестове в NUnit.
+ - [Test]
+
+6. Изберете коя от следните програмни единици се използва за писането на отделен компонентен тест.
+ - метод
+
+
+VIII,IX
+1. Дайте пример за коректно именуване на компонентен тест, който проверява дали потребител влиза успешно с валидно потребителско име и парола.
+ - TestUserLoginWithCorrectUsernameAndPassword
+
+или
+
+UserLoginSuccessfullyWtihCorrectUsernameAndPassword
+
+2. Дайте пример за коректно именуване на компонентен тест, който проверява дали потребител получава грешка при опит за влизане с грешно потребителско име и парола
+ - TestUserLoginWithWrongUsernameOrPasswordShouldFail
+
+или
+
+UserLoginWtihWrongUsernameOrPasswordShouldFail
+
+3. Дайте пример за коректно именуване на компонентен тест, който проверява дали програмата не допуска внасянето на отрицателна сума пари в банкова сметка.
+ - TestAccountDepositNegativeAmount
+
+или
+
+AccountShouldNotDepositNegativeAmount
+
+4. Разполагате с приложение-калкулатор за действия +, -, *, / със реални числа от тип decimal.
+
+Дайте пример за поне 3 различни тестови случая и очаквания резултат от всеки от тях.
+
+ - 1 случай: Събиране на положително и отрицателно число с еднаква абсолютна стойност. В този случай очакваме да получим 0. Примерни стойности -3 + 3 = 0.
+
+2 случай: Деление на нула. В този случай очакваме калкулатора да покаже подходящо съобщение за грешка. Пример: 8 / 0 -> Division by 0 is not allowed!
+
+3 случай: Деление на число, което би трябвало да доведе до резултат с точност. Пример: 8 / 3 = 2.66667
+
+
+X,XI,XII
+1. Изберете за какво служи стопера (breakpoint) в дебъгването на програми?
+ - точка за умишлено прекъсване на програма с цел дебъгване
+
+2. Посочете кое от следните действия НЕ е възможно с помощта на дебъгер?
+ - Подчертаване на логически грешки в програма
+
+3. Какво действие активира клавиша F10 във Visual Studio?
+ - Step Into
+
+4. Какво действие активира клавиша F11 във Visual Studio?
+ - Step over
+
+5. Кой от следните бутони стартира програмата в Debug режим във Visual Studio?
+ - F5
+
+
+XIII,XIV
+1. Подстринг
+ - namespace Substring
+{
+    internal class Program
+    {
+        public static void Main()
+        {
+            string text = System.Console.ReadLine();
+            int jump = int.Parse(System.Console.ReadLine());
+
+            // fix: р (bg) => p (en)
+            const char Search = 'p';
+            bool hasMatch = false;
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] == Search)
+                {
+                    hasMatch = true;
+
+                    // fix: string len fixes
+                    int endIndex = jump + 1;
+                    if (i + endIndex >= text.Length)
+                    {
+                        endIndex = text.Length - i;
+                    }
+                 
+                    string matchedString = text.Substring(i, endIndex);
+                    Console.WriteLine(matchedString);
+                    i += jump;
+                }
+            }
+
+            if (!hasMatch)
+            {
+                Console.WriteLine("no");
+            }
+        }
+    }
+}
+
+2. Множество инструкции
+ - namespace ArrayTest
+{
+    using System.Linq;
+
+    internal class Program
+    {
+        private const char ArgumentsDelimiter = ' ';
+
+        public static void Main()
+        {
+            int sizeOfArray = int.Parse(System.Console.ReadLine());
+            long[] array = new long[sizeOfArray];
+            array = System.Console.ReadLine()
+                .Split(ArgumentsDelimiter)
+                .Select(long.Parse)
+                .ToArray();
+
+            string[] command = System.Console.ReadLine().Split(' ');
+
+            while (!command[0].Equals("stop"))
+            {
+                int[] args = new int[2];
+                if (command[0].Equals("add") ||
+                    command[0].Equals("subtract") ||
+                    command[0].Equals("multiply"))
+                {
+                    args[0] = int.Parse(command[1]);
+                    args[1] = int.Parse(command[2]);
+
+                    array = PerformAction(array, command[0].ToString(), args);
+                }
+                else
+                {
+                    array = PerformAction(array, command[0], args);
+                }
+
+                PrintArray(array);
+
+                command = System.Console.ReadLine().Split(" ");
+            }
+        }
+
+        static long[] PerformAction(long[] arr, string action, int[] args)
+        {
+            long[] array = arr.Clone() as long[];
+            int pos = args[0] - 1;
+            int value = args[1];
+
+            switch (action)
+            {
+                case "multiply":
+                    array[pos] *= value;
+                    break;
+                case "add":
+                    array[pos] += value;
+                    break;
+                case "subtract":
+                    array[pos] -= value;
+                    break;
+                case "lshift":
+                    ArrayShiftLeft(array);
+                    break;
+                case "rshift":
+                    ArrayShiftRight(array);
+                    break;
+            }
+            return array;
+        }
+
+        private static void ArrayShiftRight(long[] array)
+        {
+            for (int i = array.Length - 1; i >= 1; i--)
+            {
+                array[i] = array[i - 1];
+            }
+        }
+
+        private static void ArrayShiftLeft(long[] array)
+        {
+            for (int i = 0; i < array.Length - 1; i++)
+            {
+                array[i] = array[i + 1];
+            }
+        }
+
+        private static void PrintArray(long[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.Write(array[i] + " ");
+            }
+            System.Console.WriteLine();
+        }
+    }
+}
+
+
+
+XV,XVI,XVII
+1. Посочете кой от следните идентификатори има нужда от рефакториране.
+ - int numberofpeople;
+
+2. Изберете вярното твърдение.
+ - Имената на класове трябва да започват с главна буква.
+
+3. Посочете как трябва да започват имената на параметрите на методите.
+ - Имената на параметрите задължително започват с малка буква.
+
+4. Посочете кой програмен фрагмент няма нарушения във форматирането си.
+ - Всички примери имат нарушения в правилата за форматиране
+
+5. Посочете кое от следните НЕ е част от процеса по рефакториране:
+ - добавяне на нова функционалност
+
+
+XVIII,XIX
+1. Демонстрирайте рефакториране на следния фрагмент от код, като зададате подходящо именуване и форматиране, ако и където това е необходимо:
+
+class tdi { //class for todo items
+
+public string _Name { get; set; }
+
+public string description { get; set; }
+
+public int ToDoListId { get; set; }
+
+}
+
+ - class ToDoItem
+    {
+    	public string Name { get; set; }
+      public string Description { get; set; }
+      public int ToDoListId { get; set; }
+    }
+
+2. Демонстрирайте рефакториране на следния фрагмент от код, като зададате подходящо именуване и форматиране, ако и където това е необходимо:
+
+class tdl { //class for todo list
+
+public string _Name { get; set; }
+
+public string description { get; set; }
+
+public virtual List<ToDoItem> Items { get; set; }
+
+}
+
+ - class ToDoList
+    {
+    	public string Name { get; set; }
+      public string Description { get; set; }
+      public virtual List<ToDoItem> Items { get; set; }
+    }
+
+3. Демонстрирайте рефакториране на следния фрагмент от код, като зададате подходящо именуване и форматиране, ако и където това е необходимо:
+
+class playlist { //class for todo list
+
+public string _Name { get; set; }
+
+public string description { get; set; }
+
+public virtual List<Song> Songs { get; set; }
+
+}
+
+ - class Playlist
+    {
+    	public string Name { get; set; }
+      public string Description { get; set; }
+      public virtual List<Song> songs { get; set; }
+    }
+
+4. Демонстрирайте рефакториране на следния фрагмент от код, като зададате подходящо именуване и форматиране, ако и където това е необходимо:
+
+class song { //class for song
+
+public string _Name { get; set; }
+
+public string artist { get; set; }
+
+public virtual PlayList PlayList { get; set; }
+
+}
+
+ - class Song
+    {
+    	public string Name { get; set; }
+      public string Artist { get; set; }
+      public virtual PlayList PlayList { get; set; }
+    }
+
+
+XX
+1. Пример: По време на теоретичния изпит се предоставя непълен/неработещ/некоректен програмен
+
+фрагмент. Предоставеният фрагмент да се приведе в работещ вид.
+
+Условие:
+
+Разполагате с класове Dummy и Axe. Напишете компонентни тестове, които да проверят
+
+работата на класовете и да помогнат в откриването и отстраняването на евентуални проблеми.
+
+ - В Axe.cs и Dummy.cs няма грешки.
+
+AxeTest.cs:
+
+  public class AxeTest
+
+    {
+
+        [Test]
+
+        public void AxeLosesDurabilityAfterAttack()
+
+        {
+
+            // Arrange
+
+            Axe axe = new Axe(10, 10);
+
+            Dummy dummy = new Dummy(10, 10);
+
+
+
+            // Act 
+
+            axe.Attack(dummy);
+
+
+
+            // Assert
+
+            Assert.AreEqual(9, axe.DurabilityPoints, "Axe Duraility does not change after attack.");
+
+        }
+
+
+
+        [Test]
+
+        public void BrokenAxeCantAttack()
+
+        {
+
+            // Arrange
+
+            Axe axe = new Axe(2, 2);
+
+            Dummy dummy = new Dummy(10, 10);
+
+
+
+            // Act 
+
+            axe.Attack(dummy);
+
+            axe.Attack(dummy);
+
+
+
+            // Assert
+
+            var ex = Assert.Throws<InvalidOperationException>(() => axe.Attack(dummy));
+
+            Assert.AreEqual(ex.Message, "Axe is broken.");
+
+        }
+
+    }
+
+DummyTest.cs:
+
+class DummyTest
+
+    {
+
+        [Test]
+
+        public void DummyAxeLosesHealthAfterAttack()
+
+        {
+
+            // Arrange
+
+            Axe axe = new Axe(10, 10);
+
+            Dummy dummy = new Dummy(10, 10);
+
+
+
+            // Act
+
+            axe.Attack(dummy);
+
+
+
+            // Assert
+
+            Assert.AreEqual(0, dummy.Health, "Dummy Health Does Not Change After Attack.");
+
+        }
+
+
+
+        [Test]
+
+        public void DeadDummyThrowsExeption()
+
+        {
+
+            // Arrange
+
+            Axe axe = new Axe(10, 10);
+
+            Dummy dummy = new Dummy(1, 1);
+
+
+
+            // Act
+
+            axe.Attack(dummy);
+
+
+
+            // Assert
+
+            var ex = Assert.Throws<InvalidOperationException>(() => axe.Attack(dummy));
+
+            Assert.AreEqual(ex.Message, "Dummy is dead.");
+
+        }
+
+
+
+        [Test]
+
+        public void DeadDummyGivesExperiense()
+
+        {
+
+            // Arrange
+
+            Axe axe = new Axe(10, 10);
+
+            Dummy dummy = new Dummy(1, 50);
+
+
+
+            // Act
+
+            axe.Attack(dummy);
+
+
+
+            // Assert
+
+            var ex = Assert.Throws<InvalidOperationException>(() => axe.Attack(dummy));
+
+            Assert.AreEqual(50, dummy.GiveExperience(), "Dead Dummy Does Not Gives Experiense.");
+
+        }
+
+
+
+        [Test]
+
+        public void LiveDummyDoesNotGivesExperiense()
+
+        {
+
+            // Arrange
+
+            Axe axe = new Axe(1, 100);
+
+            Dummy dummy = new Dummy(10, 50);
+
+
+
+            // Act
+
+            axe.Attack(dummy);
+
+            // Assert
+
+            var ex = Assert.Throws<InvalidOperationException>(() => dummy.GiveExperience());
+
+            Assert.AreEqual(ex.Message, "Target is not dead.");
+
+        }
+
+
+
+    }
+
+
+2. Пример: По време на теоретичния изпит се предоставя непълен/неработещ/некоректен програмен фрагмент. Предоставеният фрагмент да се приведе в работещ вид.
+
+Условие:
+
+Разполагате с код за калкулатор за действия +, -, *, /, ** (степенуване).
+
+Напишете компоненти тестове за него, които тестват подходящи специфични случаи при прилагането на операциите, например:
+
+ - 

@@ -1,0 +1,586 @@
+I
+1. Посочете за какво служи низа за връзка (connection string) в C# приложенията.
+ - съдържа данни за връзка и достъп до БД и стойности за други параметри на връзката
+
+2. Посочете кое от следните е валиден начин за изпращане на SELECT заявка в C#.
+ - SqlCommand command = new SqlCommand( "SELECT COUNT(*) FROM Employees", dbCon);
+
+3. Посочете кое от следните е валиден начин за прочитане на резултатите от SELECT заявка в C#.
+ - SqlCommand command = new SqlCommand("SELECT * FROM Employees", dbCon);
+SqlDataReader reader = command.ExecuteReader();
+using (reader)
+{
+	while (reader.Read())
+	{
+		string firstName = (string)reader["FirstName"];
+		string lastName = (string)reader["LastName"];
+		decimal salary = (decimal)reader["Salary"];
+		Console.WriteLine($"{firstName} {lastName} {salary}");
+	}
+}
+
+4. Кое от следните е характерно за Code first подхода?
+ - Създава съответните таблици в БД следвайки тяхно описание чрез същностни класове (entity класове)
+
+5. Посочете вярното твърдение за класовете, наследяващи класа DbContext.
+ - Изброяват типовете данни, които ще управляват под формата на свойства от generic типа DbSet
+
+
+II,III,IV
+1. Демонстрирайте създаване на клас, който съответства на следната таблица в БД:
+
+class Book {
+
+[[1] - public int Id { get; set; }]
+
+[[2] - public string Title { get; set; }]
+
+[[3] - public string Author { get; set; }]
+
+[[4] - public double Price { get; set; }]
+
+[[5] - public int Quantity { get; set; }]
+
+}
+
+2. Демонстрирайте създаване на клас, който съответства на следната таблица в БД:
+
+class Person {
+
+[[1] - public int Id { get; set; }]
+
+[[2] - public string FirstName { get; set; }]
+
+[[3] - public string MiddleName { get; set; }]
+
+[[4] - public string LastName { get; set; }]
+
+[[5] - public DateTime BirthDate { get; set; }]
+
+[[6] - public int CityId { get; set; }]
+
+}
+
+3. Разполагате със следния Context клас за връзка с БД в EntityFrameworkCore.
+
+Демонстрирайте Create операция, като напишете код за Create метода на клас, който добавя запис. Използвайте предоставения скелет.
+
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ToDoListMVC.DAL.Entities;
+
+namespace ToDoListMVC.DAL.Data
+{
+    public class ToDoDbContext : DbContext
+    {
+        public DbSet<ToDoList> ToDoLists { get; set; }
+        public DbSet<ToDoItem> ToDoItems { get; set; }
+        public ToDoDbContext(DbContextOptions<ToDoDbContext> options)
+            : base(options)
+        {
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseLazyLoadingProxies();
+        }
+    }
+}
+
+Скелет за клас:
+
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ToDoListMVC.DAL.Abstractions;
+using ToDoListMVC.DAL.Data;
+
+namespace ToDoListMVC.DAL.Repositories
+{
+    public class ToDoRepository
+    {
+        private readonly ToDoDbContext _context;
+        public ToDoRepository(ToDoDbContext dbContext)
+        {
+            _context = dbContext;
+        }
+        public void Create(ToDoList entity)
+        {
+            // your code goes here
+        }
+
+    }
+}
+
+ - namespace ToDoListMVC.DAL.Repositories
+
+{
+    public class ToDoRepository
+    {
+        private readonly ToDoDbContext _context;
+        public ToDoRepository(ToDoDbContext dbContext)
+        {
+            _context = dbContext;
+        }
+        public void Create(ToDoList entity)
+        {
+            _context.Add(entity);
+            _context.SaveChanges();
+        }
+
+    }
+}
+
+
+4. Демонстрирайте създаването на таблици по CodeFirst подхода за следния Context клас:
+
+Създайте таблици за следните класове: Author, Book, Category, Order
+Примете, че необходимите using директиви са предварително поставени.
+
+public class ApplicationDbContext : DbContext
+
+{
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+
+            : base(options)
+
+        {
+
+        }
+
+        // your code goes here
+
+}
+
+ - 
+
+5. 
+6. Разполагате със следния Context клас за връзка с БД в EntityFrameworkCore.
+
+Демонстрирайте Update операция, като напишете код за Update метода на клас, който редактира запис. Използвайте предоставения скелет.
+
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ToDoListMVC.DAL.Entities;
+
+namespace ToDoListMVC.DAL.Data
+{
+    public class ToDoDbContext : DbContext
+    {
+        public DbSet<ToDoList> ToDoLists { get; set; }
+        public DbSet<ToDoItem> ToDoItems { get; set; }
+        public ToDoDbContext(DbContextOptions<ToDoDbContext> options)
+            : base(options)
+        {
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseLazyLoadingProxies();
+        }
+    }
+}
+
+Скелет за клас:
+
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ToDoListMVC.DAL.Abstractions;
+using ToDoListMVC.DAL.Data;
+
+namespace ToDoListMVC.DAL.Repositories
+{
+    public class ToDoRepository
+    {
+        private readonly ToDoDbContext _context;
+        public ToDoRepository(ToDoDbContext dbContext)
+        {
+            _context = dbContext;
+        }
+        public void Update(ToDoItem entity)
+        {
+            
+            
+        }
+
+    }
+}
+
+ - namespace ToDoListMVC.DAL.Repositories
+
+{
+    public class ToDoRepository
+    {
+        private readonly ToDoDbContext _context;
+        public ToDoRepository(ToDoDbContext dbContext)
+        {
+            _context = dbContext;
+        }
+        
+        public void Update(ToDoItem entity)
+        {
+            if (entity.Id != 0)
+            {
+                entity.ModifiedAt = DateTime.Now;
+                _context.Update(entity);
+                return _context.SaveChanges() != 0;
+            }
+            
+        }
+
+    }
+}
+
+
+
+V,VI,VII,VIII
+1. Посочете как се нарича типа в EntityFrameworkCore, който съдържа в себе си записите от дадена таблица от база данни.
+ - DbSet
+
+2. Посочете какво означава абривиатурата ORM:
+ - Object Relational Mapping
+
+3. Посочете грешното твърдение за ORM технологиите.
+ - ORM технологиите имат по-добра производителност от чисти SQL заявки 
+
+4. Посочете кое от следните е ORM система.
+ - EntityFrameworkCore
+
+5. Посочете кое от следните НЕ Е ORM система.
+ - Microsoft SQL Server
+
+
+
+IX,X,XI
+1. Обяснете действието на следния фрагмент:
+
+toDoList.ModifiedAt = DateTime.Now;
+_context.Update(toDoList);
+await _context.SaveChangesAsync();
+
+ - Кодът променя обект, който съответства на запис от базата данни чрез EntityFrameworkCore.
+
+След промяната задължително трябва да се извика SaveChanges/SaveChangesAsync, тъй като в противен случай данните от тази 
+промяна няма да се запазят в базата данни.
+
+2. Обяснете действието на следния фрагмент:
+
+	toDoList.CreatedAt = DateTime.Now;
+  _context.Add(toDoList);
+  await _context.SaveChangesAsync();
+
+ - Кодът добавя обект, който съответства на запис от таблицата в базата данни чрез EntityFrameworkCore.
+
+След добавянето задължително трябва да се извика SaveChanges/SaveChangesAsync, тъй като в противен случай данните, няма да се запазят в базата данни.
+
+3. Обяснете защо примерния програмен фрагмент няма да доведе до изтриване на данни от базата данни:
+
+public void DeleteList(ToDoList toDoList)
+
+{
+
+    _context.ToDoList.Remove(toDoList);
+
+}
+
+ - За да се отрази изтриването в реалната база данни трябва да се повика _context.SaveChanges();
+
+4. Различете кода с ORM и без ORM. Над всеки от фрагментите код запишете дали използва ORM система или не.
+
+[[1] - ORM - EntityFrameworkCore]
+
+_context.Add(entity);
+
+await _context.SaveChangesAsync();
+
+[[2] - Не използва ORM система]
+
+using(dbCon)
+{
+	SqlCommand command = new SqlCommand("SELECT * FROM Employees", dbCon);
+	SqlDataReader reader = command.ExecuteReader();
+	using (reader)
+	{
+		while (reader.Read())
+		{
+      string firstName = (string)reader["FirstName"];
+      string lastName = (string)reader["LastName"];
+      decimal salary = (decimal)reader["Salary"];
+			Console.WriteLine("{firstName} {lastName} {salary}");
+		}
+	}
+}
+[[1] - ORM - EntityFrameworkCore]
+
+var lists = _context.ToDoLists
+	.Where(item => item.Active == true)
+  .OrderByDescending(item => item.Id)
+  .ToList();
+
+
+
+XII,XIII,XIV
+1. Трябва да създадете метод, който проверява дали дадено потребителско име съществува или не. 
+Посочете кое е най-подходящото име за него, което спазва добрите практики за именуване на методи в .NET.
+ - UsernameInUse
+
+2. За колко действия може да отговаря един метод?
+ - едно
+
+3. Какво представлява ViewModel?
+ - Всички изброени са верни.
+
+4. Посочете какво наричаме „магически стойности" в програмирането.
+ - низове или числени стойности, които са поставени директно в кода
+
+5. Посочете кой от следните примери е нарушение на добрите практики при използването на WindowsForms като графичен потребителски интерфейс за приложение.
+ - имената на контролите от форма са оставени по подразбиране на label1, button1 и т.н.
+
+
+XV,XVI
+1. Обяснете предназначението на контролера в MVC и ASP.NET Core.
+ - В MVC концепцията ролята на контролера е да приема и обработва входни данни и/или заявки през мрежови протокол (HTTP и др.). и да ги преобразува до команди за моделите и изгледите.
+
+В ASP.NET Core контролерите обработват постъпващите HТTP заявки и връщат отговор, като за целта използват моделите, изгледите и моделите за изгледи от останалата част на приложението, както и потенциално слой за данни и слой за услуги.
+
+2. Обяснете предназначението на изгледа в MVC и ASP.NET Core.
+ - В MVC концепцията ролята на изгледа е да представя информация под каквато и да е форма (текст, мултимедия и др.).
+
+В ASP.NET Core изгледите представят информацията под формата на HTML шаблон с вграден Razor код.
+
+3. Обяснете предназначението на модела в MVC и ASP.NET Core.
+ - В MVC концепцията ролята на модела е да управлява логиката по работа с данните.
+
+В ASP.NET Core моделите представят данните.
+
+
+XVII
+1. Демонстрирайте създаване на ViewModel за ToDoList със следните полета:
+
+Id
+
+Title (заглавие, максимум 50 знака, задължително)
+
+Description (описание, максимум 255 знака, не е задължително)
+
+ - class ToDoListViewModel {
+
+    [Key]
+
+    public int Id { get; set; }
+
+    [Required]
+
+    [MaxLength(50)]
+
+    public string Title { get; set; }
+
+    [MaxLength(255)]
+
+    public string Description { get; set; }
+
+}
+
+2. Демонстрирайте създаване на ViewModel за ToDoItem със следните полета:
+
+Id
+
+Title (заглавие, максимум 50 знака, задължително)
+
+Description (описание, максимум 255 знака, не е задължително)
+
+ToDoListId
+
+ - class ToDoListViewModel {
+
+    [Key]
+
+    public int Id { get; set; }
+
+    [Required]
+
+    [MaxLength(50)]
+
+    public string Title { get; set; }
+
+    [MaxLength(255)]
+
+    public string Description { get; set; }
+
+    public int ToDoListId { get; set; }
+
+}
+
+3. Демонстрирайте създаване на ViewModel за Book със следните полета:
+
+Id
+
+Title (заглавие, максимум 50 знака, задължително)
+
+Description (описание, максимум 255 знака, не е задължително)
+
+AuthorName (име на автор, максимум 80 знака, задължително)
+
+ - class ToDoListViewModel {
+
+    [Key]
+
+    public int Id { get; set; }
+
+    [Required]
+
+    [MaxLength(50)]
+
+    public string Title { get; set; }
+
+    [MaxLength(255)]
+
+    public string Description { get; set; }
+
+    [Required]
+
+    [MaxLength(80)]
+
+    public string AuthorName { get; set; }
+
+}
+
+
+XVIII,XIX
+1. Пример: По време на теоретичния изпит се предоставя непълен/неработещ/некоректен програмен
+
+фрагмент. Предоставеният фрагмент да се приведе в работещ вид.
+
+
+
+Условие:
+
+Разполагате със следната схема. Създайте класове, които да ѝ съответстват и да са подходящи
+
+за работа с ORM система.
+
+ - public class Country {
+
+    public int Id { get; set; }
+
+    public string Country { get; set; }
+
+    public DateTime LastUpdate { get; set; }
+
+}
+
+public class City {
+
+    public int Id { get; set; }
+
+    public string City { get; set; }
+    public virtual Country Country { get; set; }
+
+    public int CountryId { get; set; }
+
+    public DateTime LastUpdate { get; set; }
+
+}
+public class Address {
+
+    public int Id { get; set; }
+
+    public string Address { get; set; }
+
+    public string Address2 { get; set; }
+
+    public string District { get; set; }
+
+    public virtual City City { get; set; }
+
+    public int CityId { get; set; }
+
+    public string PostalCode { get; set; }
+
+    public string Phone { get; set; }
+
+    public string Location { get; set; }
+
+    public DateTime LastUpdate { get; set; }
+
+}
+
+2. Пример: По време на теоретичния изпит се предоставя непълен/неработещ/некоректен програмен
+
+фрагмент. Предоставеният фрагмент да се приведе в работещ вид.
+
+
+
+Условие:
+
+Разполагате със следната схема. Създайте класове, които да ѝ съответстват и да са подходящи
+
+за работа с ORM система. Запишете класовете един под друг в отговора.
+
+ - public class City {
+
+    public int Id { get; set; }
+
+    public string Name { get; set; }
+
+}
+
+public class User {
+
+    public int Id { get; set; }
+
+    public string Username { get; set; }
+    public string Password { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public double Balance { get; set; }
+    public virtual City City { get; set; }
+    public int CityId { get; set; }
+    public DateTime RegisterDate { get; set; }
+}
+public class Scooter {
+
+     public int Id { get; set; }
+
+     public string Model { get; set; }
+
+     public string GpsPosition { get; set; }
+
+     public bool IsTaken { get; set; }
+
+}
+public class Rent {
+
+    public int Id { get; set; }
+
+    public virtual User User { get; set; }
+
+    public int UserId { get; set; }
+
+    public virtual Scooter Scooter { get; set; }
+
+    public int ScooterId { get; set; }
+
+    public DateTime StartDate { get; set; }
+
+    public DateTime EndDate { get; set; }
+
+    public bool IsCompleted { get; set; }
+
+}

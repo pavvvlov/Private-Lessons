@@ -1,0 +1,266 @@
+I
+1. Моля посочете вярното твърдение за посочените типове данни:
+ - VARCHAR(M) - текстов тип данни
+ - DOUBLE - тип данни за реални числа
+ - FLOAT - тип данни за цели числа
+
+
+II
+1. В посочения пример имате заявка за създаване на таблица persons с колони person_id, first_name, passport_id и salary. Моля избирете липсващите думи за всяка колона от таблицата.
+
+CREATE TABLE persons(
+
+person_id  [[1] - INT] PRIMARY KEY,
+
+first_name [[2] - VARCHAR(50)],
+
+salary [[3] - DECIMAL(8,2)],
+
+passport_id [[1] - INT] UNIQUE,
+
+CONSTRAINT fk_persons_passports FOREIGN KEY(passport_id) REFERENCES passports(passport_id)
+
+);
+
+
+III
+1. Създайте заявка, която извежда първо име, фамилия и длъжност на служителите, които имат заплата между 20000 и 30000. Използвайте базата данни soft_uni.
+
+ - SELECT first_name, last_name, job_title
+
+FROM employees
+
+WHERE salary BETWEEN 20000 AND 30000;
+
+
+IV,V,VI
+1. Посочете коя от следните заявки ще изтрие записи от таблица projects, които са с начална дата 2006-01-01.
+ - DELETE FROM projects
+
+      WHERE start_date = '2006-01-01';
+
+2. Посочете коя от следните заявки ще изведе всички записи от таблица departments и извежда първите два реда от таблицата.
+ - SELECT * FROM departments WHERE department_id <=2
+
+3. Посочете коя от следните заявки ще изведе фамилия и заплата, като заплатата е в периода 20000 и 22000.
+ - SELECT `last_name`, `salary`FROM `employees` WHERE `salary` BETWEEN 20000 AND 22000;
+
+
+VII
+1. Във вашата база от данни Soft_uni имате създадена таблица Employees с 500 записа. Необходимо е да добавите нова колона с име salary. Напишете заявка за добавяне на колоната в таблица employees. 
+ - ALTER TABLE employees
+
+ADD salary DECIMAL;
+
+
+VIII,IX,X
+1. Посочете какво прави клаузата FULL JOIN.
+ - FULL JOIN - Тази връзка връща записите, отговарящи на свързващото условие и също така несъвпадащите записи от лявата и от дясната таблица.
+
+2. Посочете действието на използваната връзка в следната заявка: 
+
+SELECT * FROM employees AS e
+
+ RIGHT OUTER JOIN departments AS d
+
+ ON e.department_id = d.department_id;
+
+ - Тази връзка връща записите, отговарящи на свързващото условие и също така несъвпадащите записи от таблица departments.
+
+3. Емате следната заявка. Посочете вярното твърдение за получения резултат от агрегиращата използвана функция след нейното изпълнение. 
+
+SELECT e.`department_id`,
+
+  AVG(e.`salary`) AS 'AvgSalary'
+
+FROM `employees` AS e
+
+GROUP BY e.`department_id`;
+
+ - Намира средноаритметичната стойност на заплатите на служителите и преименува колоната.
+
+
+XI,XII,XIII
+1. Имате представена подзаявка за намиране служителите от отдел финанси и извеждане на всички колони от таблицата. Поставете липсващите думи, за да направите работещ код.
+
+SELECT * FROM employees
+[[1] - WHERE] department_id [[2] - IN]
+
+  (
+
+   SELECT department_id
+    [[3] - FROM] departments
+
+    [[1] - WHERE] name = 'Finance'  );
+
+
+2. Допишете следната заявка, така че да изведе като резултат служителите със заплата по-голяма от 50000 и да ги сортира в низходящ ред.
+
+SELECT first_name, last_name, salary FROM employees
+
+ - SELECT first_name, last_name, salary FROM employees
+
+WHERE salary > 50000
+
+ORDER BY salary DESC;
+
+3. Имплементирайте код на заявка, която извежда колоните first_name, last_name и job_title от таблица employees и извежда само тези записи със заплата между 20000 и 30000.
+
+ - SELECT first_name, last_name, job_title
+
+FROM employees
+
+WHERE salary BETWEEN 20000 AND 30000;
+
+
+XIV,XV,XVI,XVII
+1. Дадена е дефиниция за транзакция.  Поставете липсващите думи в дефиницията. 
+
+Транзакциите гарантират пълнотата и цялостността на базата данни. Всички промени в транзакцията са  [[1] - временни]. 
+Промените се съхраняват едва след изпълнението на [[2] - COMMIT]. По всяко време всички промени могат да се отменят чрез [[3] - ROLLBACK].
+
+2. Имате пример за създаване на функция:
+
+CREATE [[2] - FUNCTION] [[1] - udf]_project_weeks (start_date DATETIME, end_date DATETIME)
+
+[[4] - RETURNS] INT
+
+BEGIN
+
+            // тяло на функцията
+
+END
+
+Поставете липсващите думи, така че да се получи правилния код.
+
+3. Имате създадена съхранена процедура с параметър usp_select_employees_by_seniority(min_years_at_work INT). Моля да дефинирате заявка за извикване на процедурата, за да може да бъде използвана.
+ - CALL usp_select_employees_by_seniority(15);
+
+4. Моля посочете вярното твърдение за съхранени процедури в език My SQL.
+ - Могат да приемат входни параметри; Могат да връщат изходни резултати.
+
+
+XVIII
+1. Имате пример за създаване на процедура:
+
+CREATE [[3] - PROCEDURE] [[1] - usp]_withdraw_money (account_id INT, money_amount DECIMAL)
+
+[[4] - BEGIN]
+
+  -- Transaction logic goes here.
+
+END
+
+Поставете липсващите думи, така че да се получи правилния код.
+
+
+
+XIX
+1.Имате синтаксис на транзакция в My SQL. Открийте липсващите думи в кода и го модифицирайте, така че да получите коректно работеща заявка. 
+
+[[5] - START] [[4] - TRANSACTION]
+
+[[6] - UPDATE] accounts SET balance = balance – withdraw_amount
+
+WHERE id = account
+
+--Transaction logic goes here
+
+IF ROW_COUNT() <> 1 THEN -- Affected rows are different than one.
+
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid account';
+
+            [[3] - ROLLBACK];
+
+ELSE
+
+            [[2] - COMMIT];
+
+[[1] - END IF];
+
+ 
+2. Трябва да създадете потребителска функция с параметри. Открийте липсващите думи под текста и ги поставете на правилното място, така че да получите коректно работещ код.
+
+[[3] - CREATE] [[5] - FUNCTION] udf_project_weeks (start_date DATETIME, end_date DATETIME)
+
+RETURNS INT
+
+[[2] - BEGIN]
+
+            // тяло на функцията
+
+[[1] - END]
+
+
+
+XX
+1. Електрическите тротинетки се превърнаха в голям хит през последните няколко години. В големите градове те са все по-предпочитан и удобен начин за транспорт. Компания за отдаване под наем на електрически тротинетки има нужда от създаване на софтуер за дейността си. Ваша отговорност е да изпълните заявки върху базата данни, която съдържа следните таблици:
+
+cities
+
+users
+
+scooters
+
+rents
+
+ - SELECT user_id, username, balance FROM `users` WHERE city_id = 2 ORDER BY balance DESC LIMIT 1;
+ - SELECT COUNT(*) AS total_rents, c.name AS name FROM rents AS r INNER JOIN users AS u ON u.user_id = r.user_id INNER JOIN cities AS c ON u.city_id=c.city_id GROUP BY u.city_id ORDER BY COUNT(*) DESC LIMIT 10;
+ - SELECT COUNT(*) AS total_rents, users.username FROM rents
+
+INNER JOIN users ON rents.user_id = users.user_id
+
+GROUP BY rents.user_id
+
+ORDER BY COUNT(*) ASC, username ASC
+
+LIMIT 5;
+
+
+2. Създайте база данни с името online_auction. Ще получите описания, с помощта на които ще създадете следните 5 таблици: 
+
+cities 
+
+persons 
+
+product_types 
+
+products 
+
+bids 
+
+ - SELECT p.id, p.name product_name, ps.first_name, ps.last_name, c.name city_name, c.country_name FROM products p
+
+JOIN persons ps ON p.owner_id = ps.id
+
+JOIN cities c ON p.sold_city_id = c.id
+
+WHERE country_name = 'Germany' AND ps.first_name = 'Britni'
+
+ORDER BY p.id;
+
+ - SELECT ps.id, ps.first_name, ps.last_name, c.name city_name, COUNT(p.id) product_count FROM persons ps
+
+JOIN products p ON p.owner_id = ps.id
+
+JOIN cities c ON ps.city_id = c.id
+
+GROUP BY ps.id
+
+ORDER BY product_count DESC, ps.first_name
+
+LIMIT 10;
+
+ - SELECT p.name product_name, c.name city_name, COUNT(b.product_id) bid_count, MAX(b.amount) max_amount, MIN(b.amount) min_amount FROM products p
+
+JOIN bids b ON p.id = b.product_id
+
+JOIN cities c ON c.id = p.sold_city_id
+
+WHERE c.country_name = 'Bulgaria'
+
+GROUP BY p.id
+
+ORDER BY bid_count DESC
+
+LIMIT 5;
